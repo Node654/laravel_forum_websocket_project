@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Database\Factories\SectionFactory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,5 +24,16 @@ class Section extends Model
     public function branches(): HasMany
     {
         return $this->hasMany(Branch::class, 'section_id', 'id');
+    }
+
+    public function parentBranches(): HasMany
+    {
+        return $this->hasMany(Branch::class, 'section_id', 'id')
+            ->whereNull('parent_id');
+    }
+
+    public function getOtherBranches(Branch $branch): Collection
+    {
+        return $this->branches()->whereNot('id', $branch->id)->get();
     }
 }

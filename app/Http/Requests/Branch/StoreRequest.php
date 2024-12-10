@@ -30,7 +30,7 @@ class StoreRequest extends FormRequest
         ];
     }
 
-    public function data(): BranchData
+    public function branchData(): BranchData
     {
         return BranchData::from($this->validated());
     }

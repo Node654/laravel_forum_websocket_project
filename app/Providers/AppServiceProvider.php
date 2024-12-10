@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\Resources\Branch\BranchResource;
 use App\Http\Resources\Section\SectionResource;
+use App\Http\Resources\Section\SectionWithBranchesResource;
 use App\Services\Branch\BranchService;
 use App\Services\Section\SectionService;
 use Illuminate\Support\Facades\Vite;
@@ -27,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         SectionResource::withoutWrapping();
+        SectionWithBranchesResource::withoutWrapping();
         BranchResource::withoutWrapping();
         Vite::prefetch(concurrency: 3);
     }

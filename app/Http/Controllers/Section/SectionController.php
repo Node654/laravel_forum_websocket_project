@@ -27,7 +27,7 @@ class SectionController extends Controller
 
     public function store(StoreRequest $request): RedirectResponse
     {
-        SectionFacade::store($request->data());
+        SectionFacade::store($request->sectionData());
         return redirect()->route('sections.index');
     }
 
@@ -43,12 +43,14 @@ class SectionController extends Controller
 
     public function update(UpdateRequest $request, Section $section)
     {
-        SectionFacade::update($request->data(), $section);
+        SectionFacade::update($request->sectionData(), $section);
         return redirect()->route('sections.index');
     }
 
     public function destroy(Section $section)
     {
         $section->delete();
+
+        return redirect()->route('sections.index');
     }
 }

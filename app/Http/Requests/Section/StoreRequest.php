@@ -28,7 +28,7 @@ class StoreRequest extends FormRequest
         ];
     }
 
-    public function data(): SectionData
+    public function sectionData(): SectionData
     {
         return SectionData::from($this->validated());
     }

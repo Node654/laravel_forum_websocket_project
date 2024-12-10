@@ -21,4 +21,9 @@ class BranchService
         $section = Section::query()->find($data->section_id);
         $section->branches()->firstOrCreate($data->toArray());
     }
+
+    public function update(BranchData $data, Branch $branch): void
+    {
+        $branch->update($data->toArray());
+    }
 }

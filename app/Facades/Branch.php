@@ -12,6 +12,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 /**
  * @method static void store(BranchData $data)
  * @method static Collection getBranches(array $with = [], array $fields = ['*'], Section $section = null)
+ * @method static void update(BranchData $data, \App\Models\Branch $branch)
  *
  * @see BranchService
  */

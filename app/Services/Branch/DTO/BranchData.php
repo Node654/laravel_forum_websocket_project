@@ -2,9 +2,9 @@
 
 namespace App\Services\Branch\DTO;
 
-use Illuminate\Support\Optional;
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Optional;
 
 class BranchData extends Data
 {

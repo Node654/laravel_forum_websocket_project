@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Branch;
 
+use App\Services\Branch\DTO\BranchData;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRequest extends FormRequest
@@ -23,6 +24,13 @@ class UpdateRequest extends FormRequest
     {
         return [
             'title' => 'required|string|min:3',
+            'section_id' => 'required|int|exists:sections,id',
+            'parent_id' => 'nullable|int|exists:branches,id',
         ];
+    }
+
+    public function branchData(): BranchData
+    {
+        return BranchData::from($this->validated());
     }
 }

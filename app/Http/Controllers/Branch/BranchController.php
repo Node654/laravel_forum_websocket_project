@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Branch;
 use App\Facades\Section as SectionFacade;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Branch\StoreRequest;
+use App\Http\Requests\Branch\UpdateRequest;
 use App\Http\Resources\Branch\BranchResource;
 use App\Http\Resources\Section\SectionResource;
+use App\Http\Resources\Section\SectionWithBranchesResource;
 use App\Models\Branch;
 use App\Facades\Branch as BranchFacade;
 use Illuminate\Http\RedirectResponse;
@@ -30,7 +32,7 @@ class BranchController extends Controller
 
     public function store(StoreRequest $request): RedirectResponse
     {
-        BranchFacade::store($request->data());
+        BranchFacade::store($request->branchData());
         return redirect()->route('sections.index');
     }
 
@@ -41,21 +43,30 @@ class BranchController extends Controller
 
     public function edit(Branch $branch)
     {
-        //
+        $sections = SectionWithBranchesResource::collection(SectionFacade::getSections(['branches']));
+        return Inertia::render('Branch/Update', ['sections' => $sections, 'branch' => $branch]);
     }
 
-    public function update(Request $request, Branch $branch)
+    public function update(UpdateRequest $request, Branch $branch)
     {
-        //
+        BranchFacade::update($request->branchData(), $branch);
+        return redirect()->route('sections.index');
     }
 
     public function destroy(Branch $branch)
     {
-        //
+        $branch->delete();
+
+        return redirect()->route('sections.index');
     }
 
     public function branchIndex(Section $section): AnonymousResourceCollection
     {
         return BranchResource::collection(BranchFacade::getBranches([], ['id', 'title'], $section));
+    }
+
+    public function branchIndexExtract(Section $section, Branch $branch): AnonymousResourceCollection
+    {
+        return BranchResource::collection($section->getOtherBranches($branch));
     }
 }
