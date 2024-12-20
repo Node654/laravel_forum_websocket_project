@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Branch\StoreRequest;
 use App\Http\Requests\Branch\UpdateRequest;
 use App\Http\Resources\Branch\BranchResource;
+use App\Http\Resources\Branch\BranchWithChildrenResource;
 use App\Http\Resources\Section\SectionResource;
 use App\Http\Resources\Section\SectionWithBranchesResource;
 use App\Models\Branch;
@@ -38,7 +39,7 @@ class BranchController extends Controller
 
     public function show(Branch $branch)
     {
-        return Inertia::render('Branch/Show', ['branch' => $branch]);
+        return Inertia::render('Branch/Show', ['branch' => BranchWithChildrenResource::make($branch)]);
     }
 
     public function edit(Branch $branch)
@@ -68,5 +69,10 @@ class BranchController extends Controller
     public function branchIndexExtract(Section $section, Branch $branch): AnonymousResourceCollection
     {
         return BranchResource::collection($section->getOtherBranches($branch));
+    }
+
+    public function themeCreate(Branch $branch)
+    {
+        return Inertia::render('Theme/Create', ['branch' => BranchResource::make($branch)]);
     }
 }

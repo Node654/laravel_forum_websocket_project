@@ -7,6 +7,8 @@ use Inertia\Inertia;
 
 require 'groups/sections.php';
 require 'groups/branches.php';
+require 'groups/themes.php';
+require 'groups/messages.php';
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

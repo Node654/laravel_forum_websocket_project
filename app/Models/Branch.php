@@ -5,6 +5,8 @@ namespace App\Models;
 use Database\Factories\BranchFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
@@ -21,4 +23,19 @@ class Branch extends Model
         'section_id',
         'parent_id'
     ];
+
+    public function children(): HasMany
+    {
+        return $this->hasMany(Branch::class, 'parent_id', 'id');
+    }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class, 'parent_id', 'id');
+    }
+
+    public function themes(): HasMany
+    {
+        return $this->hasMany(Theme::class, 'branch_id', 'id');
+    }
 }
