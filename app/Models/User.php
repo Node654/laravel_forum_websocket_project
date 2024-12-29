@@ -32,4 +32,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function getAvatarUrlAttribute(): string|null
+    {
+        if (is_null($this->avatar))
+        {
+            return null;
+        }
+        return url($this->avatar);
+    }
 }

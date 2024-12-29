@@ -5,10 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-require 'groups/sections.php';
-require 'groups/branches.php';
-require 'groups/themes.php';
-require 'groups/messages.php';
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -24,6 +21,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    require 'groups/sections.php';
+    require 'groups/branches.php';
+    require 'groups/themes.php';
+    require 'groups/messages.php';
+    require 'groups/user.php';
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

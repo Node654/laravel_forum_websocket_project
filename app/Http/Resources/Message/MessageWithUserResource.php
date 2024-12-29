@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources\Message;
 
+use App\Http\Resources\User\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MessageResource extends JsonResource
+class MessageWithUserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +19,8 @@ class MessageResource extends JsonResource
             'id' => $this->id,
             'body' => $this->body,
             'theme_id' => $this->theme_id,
-            'user_id' => $this->user_id,
-            'created_at' => $this->created_at->diffForHumans(),
+            'user' => UserResource::make($this->user),
+            'created_at' => $this->created_at->format('Y-m-d'),
         ];
     }
 }

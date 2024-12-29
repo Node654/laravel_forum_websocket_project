@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Message;
+namespace App\Http\Resources\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MessageResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,8 @@ class MessageResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'body' => $this->body,
-            'theme_id' => $this->theme_id,
-            'user_id' => $this->user_id,
-            'created_at' => $this->created_at->diffForHumans(),
+            'name' => $this->name,
+            'avatar' => $this->avatar_url
         ];
     }
 }

@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources\Theme;
 
+use App\Http\Resources\Message\MessageWithUserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ThemeResource extends JsonResource
+class ThemeWithMessageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,7 +19,8 @@ class ThemeResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'branch_id' => $this->branch_id
+            'branch_id' => $this->branch_id,
+            'messages' => MessageWithUserResource::collection($this->messages),
         ];
     }
 }

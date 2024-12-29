@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Theme;
 
 use App\Http\Requests\Theme\UpdateRequest;
 use App\Http\Resources\Theme\ThemeResource;
+use App\Http\Resources\Theme\ThemeWithMessageResource;
 use App\Models\Theme;
 use App\Facades\Theme as ThemeFacade;
 use App\Http\Controllers\Controller;
@@ -45,8 +46,7 @@ class ThemeController extends Controller
      */
     public function show(Theme $theme)
     {
-        $theme = ThemeResource::make($theme);
-        return Inertia::render('Theme/Show', ['theme' => $theme]);
+        return Inertia::render('Theme/Show', ['theme' => ThemeWithMessageResource::make($theme)]);
     }
 
     /**
