@@ -21,6 +21,7 @@ class MessageWithUserResource extends JsonResource
             'theme_id' => $this->theme_id,
             'user' => UserResource::make($this->user),
             'created_at' => $this->created_at->format('Y-m-d'),
+            'isLiked' => $this->isLiked
         ];
     }
 }

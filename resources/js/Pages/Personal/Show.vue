@@ -40,8 +40,8 @@ function updateAvatar() {
                 </div>
                 <div >
                     <p class="text-lg mb-2">Сменить аватар</p>
-                    <button @click.prevent="avatar.click()" type="button" :class="['block w-24 h-24 ', props.user.avatar ? '' : 'rounded-full bg-gray-500']">
-                        <img v-if="props.user.avatar" :src="props.user.avatar" :alt="props.user.name">
+                    <button @click.prevent="avatar.click()" type="button" :class="['block w-24 h-24', props.user.avatar ? '' : 'rounded-full bg-gray-500']">
+                        <img v-if="props.user.avatar" :src="props.user.avatar" :alt="props.user.name" class="block w-24 h-24">
                     </button>
                     <div hidden>
                         <input @change.prevent="updateAvatar" ref="avatar" type="file">

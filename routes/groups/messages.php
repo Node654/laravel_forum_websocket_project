@@ -8,4 +8,5 @@ Route::controller(MessageController::class)
     ->as('messages.')
     ->group(function () {
         Route::post('/', 'store')->name('store');
+        Route::post('/{message}/like', 'like')->name('like');
 });
