@@ -7,7 +7,6 @@ use App\Services\Branch\BranchService;
 use App\Services\Branch\DTO\BranchData;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Facade;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
  * @method static void store(BranchData $data)

@@ -8,5 +8,6 @@ Route::controller(MessageController::class)
     ->as('messages.')
     ->group(function () {
         Route::post('/', 'store')->name('store');
-        Route::post('/{message}/like', 'like')->name('like');
-});
+        Route::post('/{message}/likes', 'like')->name('like');
+        Route::post('/{message}/complaints', 'storeComplaint')->name('complaints-store');
+    });

@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
       docker-php-ext-configure gd --with-freetype --with-jpeg && \
       # Установка расширений PHP
       docker-php-ext-install pdo_mysql bcmath gd zip && \
+      docker-php-ext-install pcntl && \
       apt-get clean && \
       rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

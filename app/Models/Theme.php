@@ -11,10 +11,11 @@ class Theme extends Model
     use SoftDeletes;
 
     protected $table = 'themes';
+
     protected $fillable = [
         'title',
         'description',
-        'branch_id'
+        'branch_id',
     ];
 
     public function messages(): HasMany

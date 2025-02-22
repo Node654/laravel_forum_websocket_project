@@ -9,6 +9,7 @@ use App\Http\Resources\Section\SectionWithBranchesResource;
 use App\Http\Resources\User\UserResource;
 use App\Services\Branch\BranchService;
 use App\Services\Message\MessageService;
+use App\Services\Notification\NotificationService;
 use App\Services\Section\SectionService;
 use App\Services\Theme\ThemeService;
 use App\Services\User\UserService;
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ThemeService::class, ThemeService::class);
         $this->app->bind(MessageService::class, MessageService::class);
         $this->app->bind(UserService::class, UserService::class);
+        $this->app->bind(NotificationService::class, NotificationService::class);
     }
 
     /**

@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\DB;
 
 class Branch extends Model
 {
     /** @use HasFactory<BranchFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     protected $table = 'branches';
@@ -21,7 +21,7 @@ class Branch extends Model
     protected $fillable = [
         'title',
         'section_id',
-        'parent_id'
+        'parent_id',
     ];
 
     public function children(): HasMany
@@ -37,5 +37,10 @@ class Branch extends Model
     public function themes(): HasMany
     {
         return $this->hasMany(Theme::class, 'branch_id', 'id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

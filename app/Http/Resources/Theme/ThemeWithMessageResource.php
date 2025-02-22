@@ -3,7 +3,6 @@
 namespace App\Http\Resources\Theme;
 
 use App\Http\Resources\Message\MessageWithUserResource;
-use App\Models\Theme;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

@@ -21,7 +21,7 @@ class SectionService
     public function update(SectionData $data, Section $section): void
     {
         $section->update([
-            'title' => $data->title
+            'title' => $data->title,
         ]);
     }
 }

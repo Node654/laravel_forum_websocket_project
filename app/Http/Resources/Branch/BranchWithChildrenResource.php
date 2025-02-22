@@ -21,7 +21,7 @@ class BranchWithChildrenResource extends JsonResource
             'parent_id' => $this->parent_id ?? null,
             'section_id' => $this->section_id ?? null,
             'children' => BranchResource::collection($this->children),
-            'themes' => ThemeResource::collection($this->themes)
+            'themes' => ThemeResource::collection($this->themes),
         ];
     }
 }

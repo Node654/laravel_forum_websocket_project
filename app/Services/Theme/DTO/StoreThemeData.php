@@ -15,8 +15,5 @@ class StoreThemeData extends Data
         public string|null|Optional $description,
         #[MapInputName('branch_id')]
         public string $branch_id,
-    )
-    {
-
-    }
+    ) {}
 }

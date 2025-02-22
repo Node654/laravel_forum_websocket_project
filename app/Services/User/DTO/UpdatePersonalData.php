@@ -11,7 +11,5 @@ class UpdatePersonalData extends Data
     public function __construct(
         #[MapInputName('avatar')]
         public UploadedFile $avatar,
-    )
-    {
-    }
+    ) {}
 }

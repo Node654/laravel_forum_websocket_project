@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Theme;
 
+use App\Facades\Theme as ThemeFacade;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Theme\StoreRequest;
 use App\Http\Requests\Theme\UpdateRequest;
 use App\Http\Resources\Theme\ThemeResource;
 use App\Http\Resources\Theme\ThemeWithMessageResource;
 use App\Models\Theme;
-use App\Facades\Theme as ThemeFacade;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Theme\StoreRequest;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ThemeController extends Controller
@@ -55,6 +54,7 @@ class ThemeController extends Controller
     public function edit(Theme $theme)
     {
         $theme = ThemeResource::make($theme);
+
         return Inertia::render('Theme/Update', ['theme' => $theme]);
     }
 
@@ -64,6 +64,7 @@ class ThemeController extends Controller
     public function update(UpdateRequest $request, Theme $theme)
     {
         ThemeFacade::update($request->themeData(), $theme);
+
         return redirect()->route('branches.show', ['branch' => $theme->branch_id], 303);
     }
 
@@ -72,8 +73,9 @@ class ThemeController extends Controller
      */
     public function destroy(Theme $theme)
     {
-        $branchId = $theme->branch_id;;
+        $branchId = $theme->branch_id;
         $theme->delete();
+
         return redirect()->route('branches.show', ['branch' => $branchId], 303);
     }
 }

@@ -14,7 +14,5 @@ class StoreMessageData extends Data
         public int $theme_id,
         #[MapInputName('user_id')]
         public int $user_id,
-    )
-    {
-    }
+    ) {}
 }

@@ -23,7 +23,7 @@ class UpdatePersonalRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'avatar' => 'required|file'
+            'avatar' => 'required|file',
         ];
     }
 

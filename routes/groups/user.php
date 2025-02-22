@@ -9,4 +9,4 @@ Route::controller(UserController::class)
     ->group(function () {
         Route::get('/personal', 'personal')->name('personal');
         Route::patch('/personal', 'update')->name('personal-update');
-});
+    });

@@ -21,7 +21,7 @@ class BranchFactory extends Factory
         return [
             'title' => fake()->title,
             'section_id' => Section::query()->inRandomOrder()->value('id'),
-            'parent_id' => Branch::query()->inRandomOrder()->value('id') ?? null
+            'parent_id' => Branch::query()->inRandomOrder()->value('id') ?? null,
         ];
     }
 }

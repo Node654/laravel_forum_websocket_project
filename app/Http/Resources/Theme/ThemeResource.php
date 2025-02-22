@@ -18,7 +18,7 @@ class ThemeResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'branch_id' => $this->branch_id
+            'branch_id' => $this->branch_id,
         ];
     }
 }

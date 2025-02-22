@@ -6,7 +6,6 @@ use App\Facades\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdatePersonalRequest;
 use App\Http\Resources\User\UserResource;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Inertia\Inertia;
 use Inertia\Response;

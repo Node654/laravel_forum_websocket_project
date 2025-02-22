@@ -2,7 +2,7 @@
 
 import MainLayout from "@/Layouts/MainLayout.vue";
 import {ref} from "vue";
-import {router} from "@inertiajs/vue3";
+import {router, usePage} from "@inertiajs/vue3";
 
 const title = ref('');
 const sectionId = ref(null);
@@ -48,7 +48,19 @@ function getBranches() {
                 <div class="mb-2" v-if="props.sections.length > 0">
                     <select @change.prevent="getBranches" :class="['w-1/3', errors.section_id ? 'border border-red-700' : '']" v-model="sectionId">
                         <option :value="null" selected disabled>Выберите раздел</option>
-                        <option v-for="section in props.sections" :value="section.id">{{ section.title }}</option>
+                        <template v-for="section in props.sections">
+                            <template v-if="usePage().props.auth.roles.some(code => {
+                                return [
+                                    `Editor`,
+                                    `Editor.${section.id}`,
+                                ].includes(code);
+                            })">
+                                <option :value="section.id">{{
+                                    section.title
+                                  }}
+                                </option>
+                            </template>
+                        </template>
                     </select>
                     <div v-if="errors.section_id" class="text-lg text-red-600 mb-2">
                         {{ errors.section_id }}
@@ -59,7 +71,6 @@ function getBranches() {
                         <option :value="null" selected disabled>Выберите ветку</option>
                         <option v-for="branch in branches" :value="branch.id">{{ branch.title }}</option>
                     </select>
-
                 </div>
                 <div class="mb-2">
                     <input :class="['w-1/3', errors.title ? 'border border-red-700' : '']" type="text" v-model="title" placeholder="Новая ветка">

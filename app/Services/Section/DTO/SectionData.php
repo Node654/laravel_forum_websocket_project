@@ -10,8 +10,5 @@ class SectionData extends Data
     public function __construct(
         #[MapInputName('title')]
         public string $title
-    )
-    {
-
-    }
+    ) {}
 }

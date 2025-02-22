@@ -13,10 +13,11 @@ class Section extends Model
 {
     /** @use HasFactory<SectionFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     protected $fillable = [
-        'title'
+        'title',
     ];
 
     protected $table = 'sections';

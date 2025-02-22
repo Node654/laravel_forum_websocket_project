@@ -15,8 +15,5 @@ class BranchData extends Data
         public int $section_id,
         #[MapInputName('parent_id')]
         public int|null|Optional $parent_id,
-    )
-    {
-
-    }
+    ) {}
 }

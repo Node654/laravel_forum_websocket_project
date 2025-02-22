@@ -15,8 +15,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'body' => 'required|string|max:255',
-            'theme_id' => 'required|integer|exists:themes,id'
+            'body' => 'required|string|max:1000',
+            'theme_id' => 'required|integer|exists:themes,id',
         ];
     }
 
@@ -24,6 +24,7 @@ class StoreRequest extends FormRequest
     {
         $data = $this->validated();
         $data['user_id'] = auth()->id();
+
         return StoreMessageData::from($data);
     }
 }

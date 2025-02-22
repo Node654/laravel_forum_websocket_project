@@ -13,8 +13,5 @@ class UpdateThemeData extends Data
         public string $title,
         #[MapInputName('description')]
         public string|null|Optional $description
-    )
-    {
-
-    }
+    ) {}
 }

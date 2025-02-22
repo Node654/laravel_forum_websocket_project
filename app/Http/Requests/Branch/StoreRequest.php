@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'required|string|min:3',
             'section_id' => 'required|integer|exists:sections,id',
-            'parent_id' => 'nullable|integer|exists:branches,id'
+            'parent_id' => 'nullable|integer|exists:branches,id',
         ];
     }
 
@@ -39,7 +39,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'title' => 'Заголовок должен быть!',
-            'section_id' => 'Необходимо выбрать раздел!'
+            'section_id' => 'Необходимо выбрать раздел!',
         ];
     }
 }

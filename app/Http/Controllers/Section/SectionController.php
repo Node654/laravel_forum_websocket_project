@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Section;
 
+use App\Facades\Section as SectionFacade;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Section\StoreRequest;
 use App\Http\Requests\Section\UpdateRequest;
+use App\Http\Resources\Notification\NotificationResource;
 use App\Http\Resources\Section\SectionResource;
 use App\Http\Resources\Section\SectionWithBranchesResource;
+use App\Models\Notification;
 use App\Models\Section;
-use App\Facades\Section as SectionFacade;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 
@@ -17,7 +18,12 @@ class SectionController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Section/Index', ['sections' => SectionWithBranchesResource::collection(SectionFacade::getSections(['branches']))]);
+        return Inertia::render(
+            'Section/Index',
+            [
+                'sections' => SectionWithBranchesResource::collection(SectionFacade::getSections(['branches'])),
+            ]
+        );
     }
 
     public function create()
@@ -28,6 +34,7 @@ class SectionController extends Controller
     public function store(StoreRequest $request): RedirectResponse
     {
         SectionFacade::store($request->sectionData());
+
         return redirect()->route('sections.index');
     }
 
@@ -44,6 +51,7 @@ class SectionController extends Controller
     public function update(UpdateRequest $request, Section $section)
     {
         SectionFacade::update($request->sectionData(), $section);
+
         return redirect()->route('sections.index');
     }
 
