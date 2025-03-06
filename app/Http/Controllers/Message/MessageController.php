@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Message;
 
+use App\Events\StoreLikeEvent;
 use App\Facades\Message as MessageFacade;
 use App\Facades\Notification;
 use App\Http\Controllers\Controller;
@@ -23,10 +24,10 @@ class MessageController extends Controller
     public function like(Message $message)
     {
         $res = $message->likes()->toggle(auth()->id());
-
         if ($res['attached']) {
             Notification::store($message, 'Вам поставили лайк!');
         }
+        broadcast(new StoreLikeEvent($message->loadCount('likes')))->toOthers();
 
         return new MessageWithUserResource($message);
     }

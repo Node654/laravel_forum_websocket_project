@@ -22,7 +22,7 @@ class MessageWithUserResource extends JsonResource
             'user' => UserResource::make($this->user),
             'created_at' => $this->created_at->format('Y-m-d'),
             'isLiked' => $this->isLiked,
-            'isNotSolvedComplaint' => $this->is_not_solved_complaint,
+            'isNotSolvedComplaint' => $this->isNotSolvedComplaint,
             'totalLikes' => $this->likes_count ?? 0,
         ];
     }

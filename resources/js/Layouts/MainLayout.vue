@@ -16,6 +16,12 @@ function openNotification() {
         })
 }
 
+window.Echo.private(`users.notifications.${usePage().props.auth.user.id}`)
+    .listen('.users.notifications', res => {
+        usePage().props.auth.notifications.push(res.data);
+        usePage().props.auth.notification_count++;
+    })
+
 </script>
 
 <template>

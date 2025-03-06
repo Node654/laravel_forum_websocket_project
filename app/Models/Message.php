@@ -18,13 +18,13 @@ class Message extends Model
         'theme_id',
     ];
 
-    public function getIsNotSolvedComplaintAttribute(): bool
-    {
-        return $this->complaintedUsers()
-            ->where('user_id', auth()->id())
-            ->where('is_solved', false)
-            ->exists();
-    }
+//    public function getIsNotSolvedComplaintAttribute(): bool
+//    {
+//        return $this->complaintedUsers()
+//            ->where('user_id', auth()->id())
+//            ->where('is_solved', false)
+//            ->exists();
+//    }
 
     public function user(): BelongsTo
     {
@@ -35,11 +35,11 @@ class Message extends Model
     {
         return $this->belongsToMany(User::class, 'message_user_likes', 'message_id', 'user_id');
     }
-
-    public function getIsLikedAttribute(): bool
-    {
-        return $this->likes()->where('user_id', auth()->id())->exists();
-    }
+//
+//    public function getIsLikedAttribute(): bool
+//    {
+//        return $this->likes()->where('user_id', auth()->id())->exists();
+//    }
 
     public function answeredUsers(): BelongsToMany
     {

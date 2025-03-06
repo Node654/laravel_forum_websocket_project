@@ -8,6 +8,7 @@ use App\Http\Requests\Theme\StoreRequest;
 use App\Http\Requests\Theme\UpdateRequest;
 use App\Http\Resources\Theme\ThemeResource;
 use App\Http\Resources\Theme\ThemeWithMessageResource;
+use App\Models\Notification;
 use App\Models\Theme;
 use Inertia\Inertia;
 

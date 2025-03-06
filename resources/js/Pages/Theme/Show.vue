@@ -58,6 +58,7 @@ function storeComplaint(message) {
         theme_id: props.theme.id,
         body: message.content
     }).then(res => {
+        console.log(res);
         if (!res.data.isNotSolvedComplaint) {
             message.isNotStoreComplaintMyselfMessage = true;
             message.content = '';
@@ -88,6 +89,20 @@ function strong() {
         range.surroundContents(strong);
     }
 }
+
+window.Echo.channel(`store_messages_${props.theme.id}`)
+    .listen('.store_messages', res => {
+        props.theme.messages.push(res.message);
+    })
+
+window.Echo.channel(`messages.likes.${props.theme.id}`)
+    .listen('.messages.likes', res => {
+        props.theme.messages.filter(message => {
+            return message.id === res.message_id;
+        }).map(message => {
+            message.totalLikes = res.likesCount;
+        })
+    })
 
 </script>
 

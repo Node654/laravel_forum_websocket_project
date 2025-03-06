@@ -21,7 +21,7 @@ class SectionController extends Controller
         return Inertia::render(
             'Section/Index',
             [
-                'sections' => SectionWithBranchesResource::collection(SectionFacade::getSections(['branches'])),
+                'sections' => SectionWithBranchesResource::collection(SectionFacade::getSections(['parentBranches'])),
             ]
         );
     }

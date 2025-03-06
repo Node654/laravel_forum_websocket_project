@@ -2,23 +2,22 @@
 
 namespace App\Events;
 
+use App\Http\Resources\Message\MessageWithUserResource;
+use App\Models\Message;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class TestEvent implements ShouldBroadcastNow
+class StoreMessageEvent implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct(private Message $message)
     {
         //
     }
@@ -31,7 +30,7 @@ class TestEvent implements ShouldBroadcastNow
     public function broadcastOn(): array
     {
         return [
-            new Channel('test-channel'),
+            new Channel('store_messages_'.$this->message->theme_id),
         ];
     }
 
@@ -40,7 +39,7 @@ class TestEvent implements ShouldBroadcastNow
      */
     public function broadcastAs(): string
     {
-        return 'test_check';
+        return 'store_messages';
     }
 
     /**
@@ -50,8 +49,6 @@ class TestEvent implements ShouldBroadcastNow
      */
     public function broadcastWith(): array
     {
-        return [
-            'message' => 'Hello, user!wwww'
-        ];
+        return ['message' => MessageWithUserResource::make($this->message)];
     }
 }

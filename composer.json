@@ -11,6 +11,7 @@
         "laravel/framework": "^11.9",
         "laravel/reverb": "^1.0",
         "laravel/sanctum": "^4.0",
+        "laravel/telescope": "^5.5",
         "laravel/tinker": "^2.9",
         "spatie/laravel-data": "^4.11",
         "tightenco/ziggy": "^2.0"
@@ -63,7 +64,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/telescope"
+            ]
         }
     },
     "config": {

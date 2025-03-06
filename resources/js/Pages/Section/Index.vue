@@ -11,6 +11,8 @@ const props = defineProps({
     }
 })
 
+console.log(props.sections);
+
 function checkBranchAuth(section, branch) {
     return usePage().props.auth.roles.some(code => {
         return [
